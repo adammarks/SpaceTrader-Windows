@@ -5,3 +5,5 @@ obj
 *.bak
 *.suo
 *.user
+
+.vs/
