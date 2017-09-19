@@ -687,7 +687,7 @@ namespace SpaceTraderWPF
 
       private void SetInGameControlsEnabled( bool enabled )
       {
-         // TODO : Menu
+         // TODO: Menu
          //mnuGameSave.Enabled = enabled;
          //mnuGameSaveAs.Enabled = enabled;
          //mnuRetire.Enabled = enabled;

@@ -240,7 +240,7 @@
             <MenuItem Name="mnuLoad" Header="_Load..." Click="mnuGameLoad_Click"/>
             <MenuItem Name="mnuSave" Header="_Save" Click="mnuGameSave_Click"/>
             <MenuItem Name="mnuSaveAs" Header="Save _As..." Click="mnuGameSaveAs_Click"/>
-            <MenuItem Name="mnuRetire" Header="_Retire" Click="mnuGameRetire_Click"/>
+            <MenuItem Name="mnuRetire" Header="_Retire" Click="mnuRetire_Click"/>
             <MenuItem Name="mnuExit" Header="E_xit" Click="mnuGameExit_Click"/>
          </MenuItem>
          <MenuItem  Name="mnuView" Header="_View">
