@@ -1,0 +1,671 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9139933B-9B23-4909-931A-8A66D1698287}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SpaceTraderWPF</RootNamespace>
+    <AssemblyName>SpaceTraderWPF</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="SpecialEvent.cs" />
+    <Compile Include="StarSystem.cs" />
+    <Compile Include="Strings.cs" />
+    <Compile Include="STSerializableObject.cs" />
+    <Compile Include="TradeItem.cs" />
+    <Compile Include="Weapon.cs" />
+    <Page Include="SpaceTrader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Commander.cs" />
+    <Compile Include="Consts.cs" />
+    <Compile Include="CrewMember.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="Equipment.cs" />
+    <Compile Include="Form_About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Alert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_BuyFuel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_BuyRepairs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_CargoBuy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_CargoSell.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Costs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Encounter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Equipment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Find.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_GetLoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Jettison.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Monster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_NewCommander.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Options.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_PayBackLoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Plunder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ShipList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Shipyard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_SpaceTrader.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ViewBank.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ViewCommander.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ViewHighScores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ViewPersonnel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ViewQuests.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ViewShip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Functions.cs" />
+    <Compile Include="FutureVersionException.cs" />
+    <Compile Include="Gadget.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="GameEndException.cs" />
+    <Compile Include="GameOptions.cs" />
+    <Compile Include="HighScoreRecord.cs" />
+    <Compile Include="PoliceRecord.cs" />
+    <Compile Include="PoliticalSystem.cs" />
+    <Compile Include="Reputation.cs" />
+    <Compile Include="Shield.cs" />
+    <Compile Include="Ship.cs" />
+    <Compile Include="ShipSpec.cs" />
+    <Compile Include="ShipTemplate.cs" />
+    <Compile Include="Shipyard.cs" />
+    <Compile Include="SpaceTrader.xaml.cs">
+      <DependentUpon>SpaceTrader.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Form_About.resx">
+      <DependentUpon>Form_About.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Alert.resx">
+      <DependentUpon>Form_Alert.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_BuyFuel.resx">
+      <DependentUpon>Form_BuyFuel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_BuyRepairs.resx">
+      <DependentUpon>Form_BuyRepairs.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_CargoBuy.resx">
+      <DependentUpon>Form_CargoBuy.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_CargoSell.resx">
+      <DependentUpon>Form_CargoSell.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Costs.resx">
+      <DependentUpon>Form_Costs.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Encounter.resx">
+      <DependentUpon>Form_Encounter.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Equipment.resx">
+      <DependentUpon>Form_Equipment.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Find.resx">
+      <DependentUpon>Form_Find.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_GetLoan.resx">
+      <DependentUpon>Form_GetLoan.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Jettison.resx">
+      <DependentUpon>Form_Jettison.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Monster.resx">
+      <DependentUpon>Form_Monster.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_NewCommander.resx">
+      <DependentUpon>Form_NewCommander.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Options.resx">
+      <DependentUpon>Form_Options.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_PayBackLoan.resx">
+      <DependentUpon>Form_PayBackLoan.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Plunder.resx">
+      <DependentUpon>Form_Plunder.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ShipList.resx">
+      <DependentUpon>Form_ShipList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Shipyard.resx">
+      <DependentUpon>Form_Shipyard.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_SpaceTrader.resx">
+      <DependentUpon>Form_SpaceTrader.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Test.resx">
+      <DependentUpon>Form_Test.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ViewBank.resx">
+      <DependentUpon>Form_ViewBank.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ViewCommander.resx">
+      <DependentUpon>Form_ViewCommander.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ViewHighScores.resx">
+      <DependentUpon>Form_ViewHighScores.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ViewPersonnel.resx">
+      <DependentUpon>Form_ViewPersonnel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ViewQuests.resx">
+      <DependentUpon>Form_ViewQuests.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ViewShip.resx">
+      <DependentUpon>Form_ViewShip.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\alien.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\arrdown.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\arrleft.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\arrright.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\arrup.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\blank.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\bottle.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\bottled.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\chartlnv.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\chartlv.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\chartlw.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\chartsnv.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\chartsnvs.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\chartsv.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\chartsvs.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\chartsw.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\chartsws.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\continuous0.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\continuous1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\destroyed.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\df.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\dfd.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\dfs.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\dfsd.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\dummy_ship.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\find.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\g_bays.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\g_cloak.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\g_fuel.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\g_hbays.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\g_navsys.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\g_repsys.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\g_targsys.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\logo.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\mantis.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\mantisd.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\mantiss.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\mantissd.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\moon.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\moongirl.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\pirate.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\police.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\retire.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\s_energy.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\s_lightning.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\s_reflective.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\scarab.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\scarabd.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\scarabs.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\scarabsd.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\scorp.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\scorpd.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\scorps.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\scorpsd.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship0.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship0d.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship10.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship10d.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship10s.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship10sd.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship1d.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship2d.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship2s.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship2sd.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship3.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship3d.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship3s.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship3sd.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship4.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship4d.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship4s.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship4sd.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship5.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship5d.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship5s.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship5sd.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship6.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship6d.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship6s.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship6sd.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship7.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship7d.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship7s.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship7sd.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship8.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship8d.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship8s.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship8sd.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship9.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship9d.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship9s.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ship9sd.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\sm.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\smd.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\special.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\splash.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\splash.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\sy-corellian.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\sy-incom.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\sy-kuat.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\sy-sienar.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\sy-sorosuub.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\trader.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\trib0.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\trib1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\trib2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\trib3.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\trib4.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\trib5.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\trib6.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\trib7.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\w_beam.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\w_military.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\w_morgan.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\w_photon.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\w_pulse.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\w_quantum.bmp" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
