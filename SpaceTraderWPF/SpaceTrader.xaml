@@ -7,6 +7,9 @@
    Height="580">
    <Grid Height="565" Width="768">
       <GroupBox Margin="4,197,515,209" HorizontalAlignment="Right" VerticalAlignment="Bottom" >
+         <GroupBox.BorderBrush>
+            <SolidColorBrush Color="Black"/>
+         </GroupBox.BorderBrush>
          <GroupBox.Header>
             <TextBlock Text="Dock"/>
          </GroupBox.Header>
@@ -20,6 +23,9 @@
          </Canvas>
       </GroupBox>
       <GroupBox Margin="252,-13,-5,209" HorizontalAlignment="Right" VerticalAlignment="Bottom" >
+         <GroupBox.BorderBrush>
+            <SolidColorBrush Color="Black"/>
+         </GroupBox.BorderBrush>
          <GroupBox.Header>
             <TextBlock Text="Cargo"/>
          </GroupBox.Header>
@@ -133,6 +139,9 @@
          </Canvas>
       </GroupBox>
       <GroupBox Margin="548,291,-5,37" HorizontalAlignment="Right" VerticalAlignment="Bottom" >
+         <GroupBox.BorderBrush>
+            <SolidColorBrush Color="Black"/>
+         </GroupBox.BorderBrush>
          <GroupBox.Header>
             <TextBlock Text="Target System"/>
          </GroupBox.Header>
@@ -161,11 +170,14 @@
          </Canvas>
       </GroupBox>
       <GroupBox Margin="180,291,403,37" HorizontalAlignment="Right" VerticalAlignment="Bottom" >
+         <GroupBox.BorderBrush>
+            <SolidColorBrush Color="Black"/>
+         </GroupBox.BorderBrush>
          <GroupBox.Header>
             <TextBlock Text="Galactic Chart"/>
          </GroupBox.Header>
          <Canvas Height="153" Width="161" >
-            <Image Name="picGalacticChart" Height="105" Canvas.Left="10" Canvas.Top="10" Width="141"/>
+            <Canvas Name="picGalacticChart" Height="105" Canvas.Left="10" Canvas.Top="10" Width="141"/>
             <Label Name="lblWormhole" Height="22" Width="81" FontSize="11" FontFamily="Microsoft Sans Serif" TabIndex="29" Margin="8,133,679,350" HorizontalAlignment="Right" VerticalAlignment="Bottom" >Tarchannen</Label>
             <Label Name="lblWormholeLabel" Height="22" Width="81" FontSize="11" FontFamily="Microsoft Sans Serif" TabIndex="28" Margin="8,120,679,363" HorizontalAlignment="Right" VerticalAlignment="Bottom" >Wormhole to</Label>
             <Button Name="btnJump" Height="22" Width="42" TabIndex="55" Click="btnJump_Click" Margin="71,123,655,360" HorizontalAlignment="Right" VerticalAlignment="Bottom" >Jump</Button>
@@ -174,14 +186,20 @@
          </Canvas>
       </GroupBox>
       <GroupBox Margin="364,291,219,37" HorizontalAlignment="Right" VerticalAlignment="Bottom" >
+         <GroupBox.BorderBrush>
+            <SolidColorBrush Color="Black"/>
+         </GroupBox.BorderBrush>
          <GroupBox.Header>
             <TextBlock Text="Short-Range Chart"/>
          </GroupBox.Header>
          <Canvas Height="153" Width="161" >
-            <Image Name="picShortRangeChart" Height="133" Canvas.Left="10" Canvas.Top="10" Width="141"/>
+            <Canvas Name="picShortRangeChart" Height="133" Canvas.Left="10" Canvas.Top="10" Width="141"/>
          </Canvas>
       </GroupBox>
       <GroupBox Margin="4,-13,515,303" HorizontalAlignment="Right" VerticalAlignment="Bottom" >
+         <GroupBox.BorderBrush>
+            <SolidColorBrush Color="Black"/>
+         </GroupBox.BorderBrush>
          <GroupBox.Header>
             <TextBlock Text="System Info"/>
          </GroupBox.Header>
@@ -208,6 +226,9 @@
          </Canvas>
       </GroupBox>
       <GroupBox Margin="4,291,587,37" HorizontalAlignment="Right" VerticalAlignment="Bottom" >
+         <GroupBox.BorderBrush>
+            <SolidColorBrush Color="Black"/>
+         </GroupBox.BorderBrush>
          <GroupBox.Header>
             <TextBlock Text="Shipyard"/>
          </GroupBox.Header>
@@ -223,6 +244,9 @@
       </GroupBox>
 
       <GroupBox Margin="4,481,772,505" HorizontalAlignment="Right" VerticalAlignment="Bottom" >
+         <GroupBox.BorderBrush>
+            <SolidColorBrush Color="Black"/>
+         </GroupBox.BorderBrush>
          <GroupBox.Header>
             <TextBlock Text="StatusBar"/>
          </GroupBox.Header>
@@ -233,7 +257,7 @@
             <Label Name="statusBarPanelExtra" Height="22" Width="456" FontSize="11" FontFamily="Microsoft Sans Serif" Margin="322,0,772,24" HorizontalAlignment="Right" VerticalAlignment="Bottom" ></Label>
          </Canvas>
       </GroupBox>
-      
+
       <Menu HorizontalAlignment="Left" Height="25" Margin="-37,0,0,0" VerticalAlignment="Top" Width="492">
          <MenuItem Name="mnuGame" Header="_Game">
             <MenuItem Name="mnuNew" Header="_New" Click="mnuGameNew_Click"/>
@@ -262,18 +286,3 @@
    </Grid>
 </Window>
 
-
-
-
-<!--<Window x:Class="SpaceTraderWPF.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SpaceTraderWPF"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
-</Window>-->

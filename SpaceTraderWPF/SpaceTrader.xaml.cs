@@ -42,14 +42,6 @@ using Fryz.Apps.SpaceTrader;
 using Microsoft.Win32;
 
 
-//using System;
-//using System.Collections;
-//using System.Drawing;
-//using System.IO;
-//using System.Windows.Forms;
-//using Microsoft.Win32;
-
-
 namespace SpaceTraderWPF
 {
    /// <summary>
@@ -97,8 +89,6 @@ namespace SpaceTraderWPF
       private System.Windows.Forms.ImageList ilDirectionImages;
       private System.Windows.Forms.ImageList ilEquipmentImages;
       private System.Windows.Forms.ImageList ilShipImages;
-
-
 
       System.Windows.Forms.IWin32Window myWin32Window = new System.Windows.Forms.NativeWindow();
 
@@ -248,6 +238,14 @@ namespace SpaceTraderWPF
 
       private System.ComponentModel.IContainer components;
 
+      BitmapImage imgIMG_G_N;
+      BitmapImage imgIMG_G_V;
+      BitmapImage imgIMG_G_W;
+      BitmapImage imgIMG_S_N;
+      BitmapImage imgIMG_S_NS;
+      BitmapImage imgIMG_S_V;
+      BitmapImage imgIMG_S_VS;
+      BitmapImage imgIMG_S_W;
 
       private void CreateImageLists()
       {
@@ -259,7 +257,21 @@ namespace SpaceTraderWPF
          this.ilShipImages = new System.Windows.Forms.ImageList( this.components );
          this.ilDirectionImages = new System.Windows.Forms.ImageList( this.components );
          this.ilEquipmentImages = new System.Windows.Forms.ImageList( this.components );
+
+         string r = @"pack://application:,,,/images/";
+        
+         imgIMG_G_N = new BitmapImage( new Uri( r+"chartlnv.bmp", UriKind.Absolute ) );
+         imgIMG_G_V = new BitmapImage( new Uri( r+"chartlv.bmp", UriKind.Absolute ) );
+         imgIMG_G_W = new BitmapImage( new Uri( r+"chartlw.bmp", UriKind.Absolute ) );
+         imgIMG_S_N = new BitmapImage( new Uri( r+"chartsnv.bmp", UriKind.Absolute ) );
+         imgIMG_S_NS = new BitmapImage( new Uri( r+"chartsnvs.bmp", UriKind.Absolute ) );
+         imgIMG_S_V = new BitmapImage( new Uri( r+"chartsv.bmp", UriKind.Absolute ) );
+         imgIMG_S_VS = new BitmapImage( new Uri( r+"chartsvs.bmp", UriKind.Absolute ) );
+         imgIMG_S_W = new BitmapImage( new Uri( r+"chartsw.bmp", UriKind.Absolute ) );
+
          return;
+
+         //var image.Source = new BitmapImage( new Uri( "pack://application:,,,/YourAssemblyName;component/Resources/someimage.png", UriKind.Absolute ) );
 
          //// 
          //// ilChartImages
@@ -797,9 +809,8 @@ namespace SpaceTraderWPF
 
       private void UpdateCharts()
       {
-         // TODO:
-         //picGalacticChart.Refresh();
-         //picShortRangeChart.Refresh();
+         picGalacticChartRefresh();
+         picShortRangeChartRefresh();
 
          if ( game == null )
          {
@@ -1616,8 +1627,14 @@ namespace SpaceTraderWPF
          }
       }
 
-      private void picGalacticChart_Paint( object sender, System.Windows.Forms.PaintEventArgs e )
+      private void picGalacticChartRefresh()
       {
+         //object sender, 
+         //System.Windows.Forms.PaintEventArgs e = null;
+
+         picGalacticChart.Children.Clear();
+         Canvas c = picGalacticChart;
+
          if ( game != null )
          {
             StarSystem[]   universe = game.Universe;
@@ -1627,16 +1644,21 @@ namespace SpaceTraderWPF
             int                  fuel        = game.Commander.Ship.Fuel;
 
             if ( fuel > 0 )
-               e.Graphics.DrawEllipse( DEFAULT_PEN, curSys.X + OFF_X - fuel, curSys.Y + OFF_Y - fuel, fuel * 2, fuel * 2 );
+            {
+               //e.Graphics.DrawEllipse( DEFAULT_PEN, curSys.X + OFF_X - fuel, curSys.Y + OFF_Y - fuel, fuel * 2, fuel * 2 );
+               DrawEllipse( c, curSys.X + OFF_X - fuel, curSys.Y + OFF_Y - fuel, fuel * 2, fuel * 2 );
+            }
 
             int index   = (int)game.SelectedSystemId;
             if ( game.TargetWormhole )
             {
                int               dest     = wormholes[(Array.IndexOf(wormholes, index) + 1) % wormholes.Length];
                StarSystem  destSys  = universe[dest];
-               e.Graphics.DrawLine( DEFAULT_PEN, targetSys.X + OFF_X_WORM + OFF_X, targetSys.Y + OFF_Y, destSys.X + OFF_X, destSys.Y + OFF_Y );
+               //e.Graphics.DrawLine( DEFAULT_PEN, targetSys.X + OFF_X_WORM + OFF_X, targetSys.Y + OFF_Y, destSys.X + OFF_X, destSys.Y + OFF_Y );
+               DrawLine( c, targetSys.X + OFF_X_WORM + OFF_X, targetSys.Y + OFF_Y, destSys.X + OFF_X, destSys.Y + OFF_Y );
             }
 
+            /* TODO
             for ( int i = 0; i < universe.Length; i++ )
             {
                int      imageIndex  = universe[i].Visited ? IMG_S_V : IMG_S_N;
@@ -1646,19 +1668,24 @@ namespace SpaceTraderWPF
 
                if ( universe[i] == game.TrackedSystem )
                {
-                  e.Graphics.DrawLine( DEFAULT_PEN, (float)universe[i].X, (float)universe[i].Y, (float)( universe[i].X + image.Width - 1 ), (float)( universe[i].Y + image.Height - 1 ) );
-                  e.Graphics.DrawLine( DEFAULT_PEN, (float)universe[i].X, (float)( universe[i].Y + image.Height - 1 ), (float)( universe[i].X + image.Width - 1 ), (float)universe[i].Y );
+                  //e.Graphics.DrawLine( DEFAULT_PEN, (float)universe[i].X, (float)universe[i].Y, (float)( universe[i].X + image.Width - 1 ), (float)( universe[i].Y + image.Height - 1 ) );
+                  //e.Graphics.DrawLine( DEFAULT_PEN, (float)universe[i].X, (float)( universe[i].Y + image.Height - 1 ), (float)( universe[i].X + image.Width - 1 ), (float)universe[i].Y );
+                  DrawLine( c, (int)universe[i].X, (int)universe[i].Y, (int)( universe[i].X + image.Width - 1 ), (int)( universe[i].Y + image.Height - 1 ) );
+                  DrawLine( c, (int)universe[i].X, (int)( universe[i].Y + image.Height - 1 ), (int)( universe[i].X + image.Width - 1 ), (int)universe[i].Y );
                }
 
-               ilChartImages.Draw( e.Graphics, universe[i].X, universe[i].Y, imageIndex );
+               // TODO                ilChartImages.Draw( e.Graphics, universe[i].X, universe[i].Y, imageIndex );
 
                if ( Functions.WormholeExists( i, -1 ) )
-                  ilChartImages.Draw( e.Graphics, universe[i].X + OFF_X_WORM, universe[i].Y, IMG_S_W );
+               {
+                  // TODO ilChartImages.Draw( e.Graphics, universe[i].X + OFF_X_WORM, universe[i].Y, IMG_S_W );
+               }
             }
+            */
          }
          else
          {
-            e.Graphics.FillRectangle( DEFAULT_BRUSH, 0, 0, (float)picGalacticChart.Width, (float)picGalacticChart.Height );
+            // TODO e.Graphics.FillRectangle( DEFAULT_BRUSH, 0, 0, (float)picGalacticChart.Width, (float)picGalacticChart.Height );
          }
       }
 
@@ -1712,8 +1739,67 @@ namespace SpaceTraderWPF
          }
       }
 
-      private void picShortRangeChart_Paint( object sender, System.Windows.Forms.PaintEventArgs e )
+      private void DrawLine( Canvas c, int x1, int y1, int x2, int y2 )
       {
+         Line l = new Line();
+         l.Stroke = new SolidColorBrush( System.Windows.Media.Color.FromArgb( 255, 255, 255, 255 ) );
+         l.StrokeThickness = 10;
+         l.X1 = x1;
+         l.Y1 = y1;
+         l.X2 = x2;
+         l.Y2 = y2;
+         c.Children.Add( l );
+      }
+
+      private void DrawEllipse( Canvas c, int x, int y, int width, int height )
+      {
+         Ellipse e = new Ellipse();
+         e.Stroke = new SolidColorBrush( System.Windows.Media.Color.FromArgb( 255, 255, 255, 255 ) );
+         e.StrokeThickness = 10;
+         e.Width = width;
+         e.Height = height;
+         c.Children.Add( e );
+         Canvas.SetTop( e as UIElement, y );
+         Canvas.SetLeft( e as UIElement, x );
+      }
+
+      private void DrawPolygon ( Canvas c, PointCollection points )
+      {
+         Polygon p = new Polygon();
+         p.Stroke = new SolidColorBrush( System.Windows.Media.Color.FromArgb( 255, 255, 255, 255 ) );
+         p.StrokeThickness = 10;
+         p.Fill = Brushes.Crimson;
+         p.Points = points;
+         c.Children.Add( p );
+      }
+
+      private void DrawString( Canvas c, string text, int x, int y)
+      {
+         TextBlock textBlock = new TextBlock();
+         textBlock.Text = text;
+         textBlock.Foreground = new SolidColorBrush( Colors.Black );
+         Canvas.SetLeft( textBlock, x );
+         Canvas.SetTop( textBlock, y );
+         c.Children.Add( textBlock );
+         //var font = new System.Drawing.Font(this.FontFamily.Source, (float)this.FontSize );
+      }
+
+      private void Draw( Canvas c, int x, int y, BitmapImage image )
+      {
+         var i = new Image();
+         i.Source = image;
+         c.Children.Add( i );
+         Canvas.SetTop( i as UIElement, y );
+         Canvas.SetLeft( i as UIElement, x );
+      }
+
+
+      private void picShortRangeChartRefresh()
+      {
+         // object sender, 
+         //System.Windows.Forms.PaintEventArgs e = null;
+         picShortRangeChart.Children.Clear();
+         Canvas c = picShortRangeChart;
          if ( game != null )
          {
             StarSystem[]   universe = game.Universe;
@@ -1726,10 +1812,17 @@ namespace SpaceTraderWPF
             int                  centerY     = (int)(picShortRangeChart.Height / 2);
             int                  delta       = (int)(picShortRangeChart.Height / (Consts.MaxRange * 2));
 
-            e.Graphics.DrawLine( DEFAULT_PEN, centerX - 1, centerY - 1, centerX + 1, centerY + 1 );
-            e.Graphics.DrawLine( DEFAULT_PEN, centerX - 1, centerY + 1, centerX + 1, centerY - 1 );
+
+            DrawLine( c, centerX - 1, centerY - 1, centerX + 1, centerY + 1 );
+            DrawLine( c, centerX - 1, centerY + 1, centerX + 1, centerY - 1 );
+
+            //e.Graphics.DrawLine( DEFAULT_PEN, centerX - 1, centerY - 1, centerX + 1, centerY + 1 );
+            //e.Graphics.DrawLine( DEFAULT_PEN, centerX - 1, centerY + 1, centerX + 1, centerY - 1 );
             if ( fuel > 0 )
-               e.Graphics.DrawEllipse( DEFAULT_PEN, centerX - fuel * delta, centerY - fuel * delta, fuel * delta * 2, fuel * delta * 2 );
+            {
+               //e.Graphics.DrawEllipse( DEFAULT_PEN, centerX - fuel * delta, centerY - fuel * delta, fuel * delta * 2, fuel * delta * 2 );
+               DrawEllipse( c, centerX - fuel * delta, centerY - fuel * delta, fuel * delta * 2, fuel * delta * 2 );
+            }
 
             if ( trackSys != null )
             {
@@ -1742,19 +1835,25 @@ namespace SpaceTraderWPF
                   int   dX2   = (int)Math.Round(4 * (trackSys.Y - curSys.Y) / (double)dist);
                   int   dY2   = (int)Math.Round(4 * (curSys.X - trackSys.X) / (double)dist);
 
-                  e.Graphics.FillPolygon( new System.Drawing.SolidBrush( System.Drawing.Color.Crimson ), 
-                     new System.Drawing.Point[] {
-                        new System.Drawing.Point(centerX + dX, centerY + dY),
-                        new System.Drawing.Point(centerX - dX2, centerY - dY2),
-                        new System.Drawing.Point(centerX + dX2, centerY + dY2) } );
+                  //e.Graphics.FillPolygon( new System.Drawing.SolidBrush( System.Drawing.Color.Crimson ),
+                  //   new System.Drawing.Point[] {
+                  //      new System.Drawing.Point(centerX + dX, centerY + dY),
+                  //      new System.Drawing.Point(centerX - dX2, centerY - dY2),
+                  //      new System.Drawing.Point(centerX + dX2, centerY + dY2) } );
+                  DrawPolygon( c, new PointCollection {
+                     new Point(centerX + dX, centerY + dY),
+                     new Point(centerX - dX2, centerY - dY2),
+                     new Point(centerX + dX2, centerY + dY2) } );
                }
 
                if ( game.Options.ShowTrackedRange )
                {
-                  var font = new System.Drawing.Font(this.FontFamily.Source, (float)this.FontSize );
-                  e.Graphics.DrawString( Functions.StringVars( Strings.ChartDistance, Functions.Multiples( dist,
-                     Strings.DistanceUnit ), trackSys.Name ), font, new System.Drawing.SolidBrush( System.Drawing.Color.Black ), 0,
-                     (float)(picShortRangeChart.Height - 13) );
+                  //var font = new System.Drawing.Font(this.FontFamily.Source, (float)this.FontSize );
+                  //e.Graphics.DrawString( Functions.StringVars( Strings.ChartDistance, Functions.Multiples( dist,
+                  //   Strings.DistanceUnit ), trackSys.Name ), font, new System.Drawing.SolidBrush( System.Drawing.Color.Black ), 0,
+                  //   (float)( picShortRangeChart.Height - 13 ) );
+                  DrawString( c, Functions.StringVars( Strings.ChartDistance, Functions.Multiples( dist,
+                     Strings.DistanceUnit ), trackSys.Name ), 0, (int)( picShortRangeChart.Height - 13 ) );
                }
             }
 
@@ -1775,44 +1874,55 @@ namespace SpaceTraderWPF
                      {
                         if ( universe[i] == game.WarpSystem )
                         {
-                           e.Graphics.DrawLine( DEFAULT_PEN, x - 6, y, x + 6, y );
-                           e.Graphics.DrawLine( DEFAULT_PEN, x, y - 6, x, y + 6 );
+                           //e.Graphics.DrawLine( DEFAULT_PEN, x - 6, y, x + 6, y );
+                           //e.Graphics.DrawLine( DEFAULT_PEN, x, y - 6, x, y + 6 );
+                           DrawLine( c, x - 6, y, x + 6, y );
+                           DrawLine( c, x, y - 6, x, y + 6 );
                         }
 
                         if ( universe[i] == game.TrackedSystem )
                         {
-                           e.Graphics.DrawLine( DEFAULT_PEN, x - 5, y - 5, x + 5, y + 5 );
-                           e.Graphics.DrawLine( DEFAULT_PEN, x - 5, y + 5, x + 5, y - 5 );
+                           //e.Graphics.DrawLine( DEFAULT_PEN, x - 5, y - 5, x + 5, y + 5 );
+                           //e.Graphics.DrawLine( DEFAULT_PEN, x - 5, y + 5, x + 5, y - 5 );
+                           DrawLine( c, x - 5, y - 5, x + 5, y + 5 );
+                           DrawLine( c, x - 5, y + 5, x + 5, y - 5 );
                         }
 
-                        ilChartImages.Draw( e.Graphics, x - OFF_X, y - OFF_Y, universe[i].Visited ? IMG_G_V : IMG_G_N );
+                        // TODO ilChartImages.Draw( e.Graphics, x - OFF_X, y - OFF_Y, universe[i].Visited ? IMG_G_V : IMG_G_N );
+                        Draw( c, x - OFF_X, y - OFF_Y, universe[i].Visited ? imgIMG_G_V : imgIMG_G_N );
 
                         if ( Functions.WormholeExists( i, -1 ) )
                         {
                            int   xW = x + 9;
                            if ( game.TargetWormhole && universe[i] == game.SelectedSystem )
                            {
-                              e.Graphics.DrawLine( DEFAULT_PEN, xW - 6, y, xW + 6, y );
-                              e.Graphics.DrawLine( DEFAULT_PEN, xW, y - 6, xW, y + 6 );
+                              //e.Graphics.DrawLine( DEFAULT_PEN, xW - 6, y, xW + 6, y );
+                              //e.Graphics.DrawLine( DEFAULT_PEN, xW, y - 6, xW, y + 6 );
+                              DrawLine( c, xW - 6, y, xW + 6, y );
+                              DrawLine( c, xW, y - 6, xW, y + 6 );
                            }
-                           ilChartImages.Draw( e.Graphics, xW - OFF_X, y - OFF_Y, IMG_G_W );
+                           // TODO ilChartImages.Draw( e.Graphics, xW - OFF_X, y - OFF_Y, IMG_G_W );
+                           Draw( c, xW - OFF_X, y - OFF_Y, imgIMG_G_W );
                         }
                      }
                      else
                      {
-                        // TODO : Need to get font
-                        var fontFromWindow = new System.Drawing.Font( this.FontFamily.Source, (float)this.FontSize );
-                        System.Drawing.Font  font  = new System.Drawing.Font(this.FontFamily.Source, 7);
-                        System.Drawing.SizeF size  = e.Graphics.MeasureString(universe[i].Name, fontFromWindow);
-                        e.Graphics.DrawString( universe[i].Name, font, new System.Drawing.SolidBrush( System.Drawing.Color.Black ),
-                           x - size.Width / 2 + OFF_X, y - size.Height );
+                        //// TODO : Need to get font
+                        //var fontFromWindow = new System.Drawing.Font( this.FontFamily.Source, (float)this.FontSize );
+                        //System.Drawing.Font  font  = new System.Drawing.Font(this.FontFamily.Source, 7);
+                        //System.Drawing.SizeF size  = e.Graphics.MeasureString(universe[i].Name, fontFromWindow);
+                        //e.Graphics.DrawString( universe[i].Name, font, new System.Drawing.SolidBrush( System.Drawing.Color.Black ),
+                        //   x - size.Width / 2 + OFF_X, y - size.Height );
+                        DrawString( c, universe[i].Name, x - 20 + OFF_X, y - 24 );
                      }
                   }
                }
             }
          }
          else
-            e.Graphics.FillRectangle( DEFAULT_BRUSH, 0, 0, (float)picShortRangeChart.Width, (float)picShortRangeChart.Height );
+         {
+            // TODO e.Graphics.FillRectangle( DEFAULT_BRUSH, 0, 0, (float)picShortRangeChart.Width, (float)picShortRangeChart.Height );
+         }
       }
 
       private void statusBar_PanelClick( object sender, System.Windows.Forms.StatusBarPanelClickEventArgs e )
