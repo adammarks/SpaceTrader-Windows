@@ -1585,9 +1585,9 @@ namespace SpaceTraderWPF
          ( new FormViewShip() ).ShowDialog( myWin32Window );
       }
 
-      private void picGalacticChart_MouseDown( object sender, System.Windows.Forms.MouseEventArgs e )
+      private void picGalacticChart_MouseDown_1( object sender, MouseButtonEventArgs e )
       {
-         if ( e.Button == System.Windows.Forms.MouseButtons.Left && game != null )
+         if ( e.LeftButton == MouseButtonState.Pressed && game != null )
          {
             StarSystem[]   universe       = game.Universe;
 
@@ -1598,10 +1598,13 @@ namespace SpaceTraderWPF
                int   x  = universe[i].X + OFF_X;
                int   y  = universe[i].Y + OFF_Y;
 
-               if ( e.X >= x - 2 &&
-                  e.X <= x + 2 &&
-                  e.Y >= y - 2 &&
-                  e.Y <= y + 2 )
+               int mouseX = (int)e.GetPosition(picGalacticChart).X;
+               int mouseY = (int)e.GetPosition(picGalacticChart).Y;
+
+               if ( mouseX >= x - 2 &&
+                  mouseX <= x + 2 &&
+                  mouseY >= y - 2 &&
+                  mouseY <= y + 2 )
                {
                   clickedSystem = true;
                   game.SelectedSystemId = (StarSystemId)i;
@@ -1610,10 +1613,10 @@ namespace SpaceTraderWPF
                {
                   int   xW = x + OFF_X_WORM;
 
-                  if ( e.X >= xW - 2 &&
-                     e.X <= xW + 2 &&
-                     e.Y >= y - 2 &&
-                     e.Y <= y + 2 )
+                  if ( mouseX >= xW - 2 &&
+                     mouseX <= xW + 2 &&
+                     mouseY >= y - 2 &&
+                     mouseY <= y + 2 )
                   {
                      clickedSystem = true;
                      game.SelectedSystemId = (StarSystemId)i;
@@ -1623,7 +1626,10 @@ namespace SpaceTraderWPF
             }
 
             if ( clickedSystem )
+            {
                UpdateAll();
+            }
+
          }
       }
 
@@ -1658,30 +1664,31 @@ namespace SpaceTraderWPF
                DrawLine( c, targetSys.X + OFF_X_WORM + OFF_X, targetSys.Y + OFF_Y, destSys.X + OFF_X, destSys.Y + OFF_Y );
             }
 
-            /* TODO
             for ( int i = 0; i < universe.Length; i++ )
             {
-               int      imageIndex  = universe[i].Visited ? IMG_S_V : IMG_S_N;
+               BitmapImage      imageIndex  = universe[i].Visited ? imgIMG_S_V : imgIMG_S_N;
                if ( universe[i] == game.WarpSystem )
-                  imageIndex++;
-               System.Drawing.Image image          = ilChartImages.Images[imageIndex];
+               {
+                  imageIndex = universe[i].Visited ? imgIMG_S_VS : imgIMG_S_NS;
+               }
 
                if ( universe[i] == game.TrackedSystem )
                {
                   //e.Graphics.DrawLine( DEFAULT_PEN, (float)universe[i].X, (float)universe[i].Y, (float)( universe[i].X + image.Width - 1 ), (float)( universe[i].Y + image.Height - 1 ) );
                   //e.Graphics.DrawLine( DEFAULT_PEN, (float)universe[i].X, (float)( universe[i].Y + image.Height - 1 ), (float)( universe[i].X + image.Width - 1 ), (float)universe[i].Y );
-                  DrawLine( c, (int)universe[i].X, (int)universe[i].Y, (int)( universe[i].X + image.Width - 1 ), (int)( universe[i].Y + image.Height - 1 ) );
-                  DrawLine( c, (int)universe[i].X, (int)( universe[i].Y + image.Height - 1 ), (int)( universe[i].X + image.Width - 1 ), (int)universe[i].Y );
+                  DrawLine( c, (int)universe[i].X, (int)universe[i].Y, (int)( universe[i].X + imageIndex.Width - 1 ), (int)( universe[i].Y + imageIndex.Height - 1 ) );
+                  DrawLine( c, (int)universe[i].X, (int)( universe[i].Y + imageIndex.Height - 1 ), (int)( universe[i].X + imageIndex.Width - 1 ), (int)universe[i].Y );
                }
 
                // TODO                ilChartImages.Draw( e.Graphics, universe[i].X, universe[i].Y, imageIndex );
+               Draw( c, universe[i].X, universe[i].Y, imageIndex);
 
                if ( Functions.WormholeExists( i, -1 ) )
                {
                   // TODO ilChartImages.Draw( e.Graphics, universe[i].X + OFF_X_WORM, universe[i].Y, IMG_S_W );
+                  Draw( c, universe[i].X + OFF_X_WORM, universe[i].Y, imgIMG_S_W );
                }
             }
-            */
          }
          else
          {
@@ -1689,9 +1696,11 @@ namespace SpaceTraderWPF
          }
       }
 
-      private void picShortRangeChart_MouseDown( object sender, System.Windows.Forms.MouseEventArgs e )
+
+      //private void picShortRangeChart_MouseDown( object sender, System.Windows.Forms.MouseEventArgs e )
+      private void picShortRangeChart_MouseDown_1( object sender, MouseButtonEventArgs e )
       {
-         if ( e.Button == System.Windows.Forms.MouseButtons.Left && game != null )
+         if ( e.LeftButton == MouseButtonState.Pressed && game != null )
          {
             StarSystem[]   universe       = game.Universe;
             StarSystem     curSys            = game.Commander.CurrentSystem;
@@ -1709,10 +1718,13 @@ namespace SpaceTraderWPF
                   int   x  = centerX + (universe[i].X - curSys.X) * delta;
                   int   y  = centerY + (universe[i].Y - curSys.Y) * delta;
 
-                  if ( e.X >= x - OFF_X &&
-                     e.X <= x + OFF_X &&
-                     e.Y >= y - OFF_Y &&
-                     e.Y <= y + OFF_Y )
+                  int mouseX = (int)e.GetPosition(picShortRangeChart).X;
+                  int mouseY = (int)e.GetPosition(picShortRangeChart).Y;
+
+                  if ( mouseX >= x - OFF_X &&
+                     mouseX <= x + OFF_X &&
+                     mouseY >= y - OFF_Y &&
+                     mouseY <= y + OFF_Y )
                   {
                      clickedSystem = true;
                      game.SelectedSystemId = (StarSystemId)i;
@@ -1721,10 +1733,10 @@ namespace SpaceTraderWPF
                   {
                      int   xW = x + 9;
 
-                     if ( e.X >= xW - OFF_X &&
-                        e.X <= xW + OFF_X &&
-                        e.Y >= y - OFF_Y &&
-                        e.Y <= y + OFF_Y )
+                     if ( mouseX >= xW - OFF_X &&
+                        mouseX <= xW + OFF_X &&
+                        mouseY >= y - OFF_Y &&
+                        mouseY <= y + OFF_Y )
                      {
                         clickedSystem = true;
                         game.SelectedSystemId = (StarSystemId)i;
@@ -1735,7 +1747,9 @@ namespace SpaceTraderWPF
             }
 
             if ( clickedSystem )
+            {
                UpdateAll();
+            }
          }
       }
 
@@ -1986,5 +2000,6 @@ namespace SpaceTraderWPF
       }
 
       #endregion
+
    }
 }
